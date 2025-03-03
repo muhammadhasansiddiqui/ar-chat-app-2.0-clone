@@ -9,7 +9,7 @@ const sendMessage = async (text, user) => {
       text,
       sender: user.displayName || user.email.split("@")[0],
       senderId: user.uid,
-      senderPhoto: user.photoURL || "",
+      senderPhoto: user.photoURL || "/user.png",
 
       timestamp: serverTimestamp(),
     });

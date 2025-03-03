@@ -49,8 +49,14 @@ const ChatroomPage = () => {
       console.error("Logout Error:", error.message);
     }
   };
+  // console.log("User photoURL:", user?.photoURL);
+  // console.log("🚀 ~ {messages.map ~ userImage:", userImage)
+
+  console.log("🚀 ~ user:", user)
+
 
   return (
+    
     <div className="flex flex-col items-center justify-center h-screen w-full bg-white px-4 md:px-0">
       {!user ? (
         // Show loading spinner if user data is not available
@@ -79,13 +85,19 @@ const ChatroomPage = () => {
              // Check if the message is sent by the logged-in user
              const isUserMessage = message.senderId === user?.uid; 
              // Default image if sender has no profile photo
-              const userImage = message.senderPhoto ? message.senderPhoto : "/user.png"; 
-
-              return (
+             const userImage = message.senderPhoto || "/user.png" || 
+             
+             // Use the sender's profile photo if available
+             (message.senderPhoto && message.senderPhoto !== "undefined") ? message.senderPhoto : "/user.png";
+             ;
+             return (
                 <div key={message.id} className={`flex ${isUserMessage ? "justify-end" : "justify-start"} p-2 my-1`}>
                   {!isUserMessage && (
-                    <img src={userImage} alt="User Avatar" className="w-9 h-9 object-cover rounded-full mr-2" />
+                    <img src="/user.png" alt="User Avatar" className="w-9 h-9 object-cover rounded-full mr-2" />
                   )}
+
+
+                  
 <div className={`flex flex-col ${isUserMessage ? "items-end text-right" : "items-start text-left"}`}>
   {/* Sender Name & Timestamp */}
   <div className={`flex items-center space-x-2 text-xs md:text-sm mb-1 ${isUserMessage ? "flex-row-reverse" : ""}`}>
@@ -107,8 +119,11 @@ const ChatroomPage = () => {
 
 
                   {isUserMessage && (
-                    <img src={user?.photoURL || "/user.png"} alt="Your Avatar" className="w-9 h-9 object-cover rounded-full ml-2" />
-                  )}
+                    <img
+                      src={userImage}
+                      alt="User Avatar"
+                      className="w-9 h-9 object-cover rounded-full mr-2"
+                    />                  )}
                 </div>
               );
             })}
