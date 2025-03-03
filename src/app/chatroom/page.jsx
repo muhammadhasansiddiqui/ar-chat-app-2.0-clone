@@ -52,26 +52,26 @@ const ChatroomPage = () => {
         <div className="w-10 h-10 border-4 border-gray-300 border-t-transparent rounded-full animate-spin"></div>
       ) : (
         <div className="w-[600px] border h-full mb-1 mt-1 bg-white shadow-lg rounded-lg p-4 flex flex-col justify-between">
-        {/* ✅ User Info */}
-        <div className="flex items-center justify-between pb-2 border-b">
-          <div className="flex items-center gap-2">
-            {/* <Image
+          {/* ✅ User Info */}
+          <div className="flex items-center justify-between pb-2 border-b">
+            <div className="flex items-center gap-2">
+              {/* <Image
               src={user.photoURL || "/user.png"}
               alt="User Profile"
               width={50}
               height={50}
               className="rounded-full border shadow"
             /> */}
-<span className="text-[20px]">            Chat App
-</span>
-            <h2 className="text-base text-center font-semibold">{user.displayName || user.email.split("@")[0]} | {user.email} </h2>
-          </div>
-          <button onClick={handleLogout} className=" p-2 rounded-md bg-gradient-to-r from-[#16A34A] to-[#15803D] 
+              <span className="text-[20px]">            Chat App
+              </span>
+              <h2 className="text-base text-center font-semibold">{user.displayName || user.email.split("@")[0]} | {user.email} </h2>
+            </div>
+            <button onClick={handleLogout} className=" p-2 rounded-md bg-gradient-to-r from-[#16A34A] to-[#15803D] 
                   text-white font-semibold cursor-pointer mb-3 mt-1 
                   transition-all duration-300 hover:from-[#15803D] hover:to-[#22C55E]">
-            Logout
-          </button>
-        </div>
+              Logout
+            </button>
+          </div>
 
 
 
@@ -135,10 +135,10 @@ const ChatroomPage = () => {
               placeholder="Type your message..."
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSendMessage()} 
               className="flex-1 p-2 border rounded mr-2 text-sm md:text-base"
             />
             <button onClick={handleSendMessage}
-              onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
               className="bg-blue-500 hover:bg-blue-700 text-white 
             font-bold py-2 px-4 rounded flex items-center">
               <AiOutlineSend className="mr-2" /> Send
