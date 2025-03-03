@@ -34,8 +34,7 @@ export default function ForgotPassword() {
       <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-center mb-4">Reset Password</h2>
         <p className="text-sm text-gray-600 text-center mb-6">
-          Enter your email and we'll send a reset link.
-        </p>
+        Enter your email and we&apos;ll send a reset link.        </p>
 
         <form onSubmit={handleResetPassword} className="space-y-4">
           <input
