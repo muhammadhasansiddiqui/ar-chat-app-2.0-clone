@@ -114,7 +114,6 @@ const ChatroomPage = () => {
                     </div>
                   </div>
 
-                  {/* اگر یوزر کا میسج ہے تو اس کی امیج رائٹ سائڈ پر دکھاؤ */}
                   {isUserMessage && (
                     <img
                       src={user?.photoURL || "/user.png"}
