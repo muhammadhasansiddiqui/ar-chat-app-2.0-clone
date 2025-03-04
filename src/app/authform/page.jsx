@@ -15,6 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import AuthGuard from "@/context/AuthContext";
+import ProfileUpload from "../profileupload/page";
 
 
 
@@ -80,10 +81,12 @@ export default function AuthForm() {
             } else {
                 result = await createUserWithEmailAndPassword(auth, email, password);
                 const user = result.user;
+                toast.success("Signup Successful!");
+                
     
                 await updateProfile(user, {
                     displayName: userName,
-                    photoURL: photoURL || "https://via.placeholder.com/150",
+                    photoURL: photoURL || "",
                 });
                 console.log("Updated User Profile:", user);
                 
@@ -166,15 +169,7 @@ export default function AuthForm() {
                 </label>
 
                 {!isLogin && (
-                    <label className="block mb-2">
-                        Profile Picture
-                        <input
-                            type="file"
-                            accept="image/*"
-                            onChange={(e) => setPhotoURL(URL.createObjectURL(e.target.files[0]))}
-                            className="w-full p-2 rounded border border-gray-300 mb-3"
-                        />
-                    </label>
+                    <ProfileUpload />
                 )}
 
                 <button

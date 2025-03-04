@@ -56,7 +56,7 @@ const ChatroomPage = () => {
 
 
   return (
-    
+
     <div className="flex flex-col items-center justify-center h-screen w-full bg-white px-4 md:px-0">
       {!user ? (
         // Show loading spinner if user data is not available
@@ -82,40 +82,39 @@ const ChatroomPage = () => {
           {/*  Chat Messages List */}
           <div className="overflow-y-auto flex-grow max-h-[70vh] p-2 scrollbar-hide">
             {messages.map((message) => {
-             // Check if the message is sent by the logged-in user
-             const isUserMessage = message.senderId === user?.uid; 
-             // Default image if sender has no profile photo
-             const userImage = message.senderPhoto || "/user.png" || 
-             
-             // Use the sender's profile photo if available
-             (message.senderPhoto && message.senderPhoto !== "undefined") ? message.senderPhoto : "/user.png";
-             ;
-             return (
+              // Check if the message is sent by the logged-in user
+              const isUserMessage = message.senderId === user?.uid;
+              // Default image if sender has no profile photo
+              const userImage = (message.senderPhoto && message.senderPhoto !== "undefined")
+                ? message.senderPhoto
+                : "/user.png";
+
+              return (
                 <div key={message.id} className={`flex ${isUserMessage ? "justify-end" : "justify-start"} p-2 my-1`}>
                   {!isUserMessage && (
                     <img src="/user.png" alt="User Avatar" className="w-9 h-9 object-cover rounded-full mr-2" />
                   )}
 
 
-                  
-<div className={`flex flex-col ${isUserMessage ? "items-end text-right" : "items-start text-left"}`}>
-  {/* Sender Name & Timestamp */}
-  <div className={`flex items-center space-x-2 text-xs md:text-sm mb-1 ${isUserMessage ? "flex-row-reverse" : ""}`}>
-    <span className="font-bold">{isUserMessage ? "You" : message.sender || "User"}</span> |
-    <span className="text-gray-500">
-      | {message.timestamp?.seconds ? new Date(message.timestamp.seconds * 1000).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : ""}
-    </span>
-  </div>
-  {/* Message Box */}
-  <div
-    className={`p-2 rounded-lg max-w-[80%] break-words text-sm 
+
+                  <div className={`flex flex-col ${isUserMessage ? "items-end text-right" : "items-start text-left"}`}>
+                    {/* Sender Name & Timestamp */}
+                    <div className={`flex items-center space-x-2 text-xs md:text-sm mb-1 ${isUserMessage ? "flex-row-reverse" : ""}`}>
+                      <span className="font-bold">{isUserMessage ? "You" : message.sender || "User"}</span> |
+                      <span className="text-gray-500">
+                        | {message.timestamp?.seconds ? new Date(message.timestamp.seconds * 1000).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : ""}
+                      </span>
+                    </div>
+                    {/* Message Box */}
+                    <div
+                      className={`p-2 rounded-lg max-w-[80%] break-words text-sm 
       md:text-base leading-relaxed shadow-md 
       ${isUserMessage ? "bg-blue-500 text-white self-end text-right" : "bg-gray-200 text-black self-start text-left"}`}
-    style={{ wordBreak: "break-word", overflowWrap: "break-word", textAlign: isUserMessage ? "right" : "left" }}
-  >
-    <p>{message.text}</p>
-  </div>
-</div>
+                      style={{ wordBreak: "break-word", overflowWrap: "break-word", textAlign: isUserMessage ? "right" : "left" }}
+                    >
+                      <p>{message.text}</p>
+                    </div>
+                  </div>
 
 
                   {isUserMessage && (
@@ -123,7 +122,7 @@ const ChatroomPage = () => {
                       src={userImage}
                       alt="User Avatar"
                       className="w-9 h-9 object-cover rounded-full mr-2"
-                    />                  )}
+                    />)}
                 </div>
               );
             })}
